@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Build project
+        run: |
+          echo "No build step configured"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
+
+      - name: Deploy GitHub Pages site
+        uses: actions/deploy-pages@v4.0.5
+        with:
+          token: ${{ github.token }}      # GitHub token (por defecto)
+          timeout: 600000                 # Tiempo máximo en ms (10 minutos)
+          error_count: 10                 # Número máximo de errores antes de cancelar
+          reporting_interval: 5000        # Intervalo de reporte en ms (5 segundos)
+          artifact_name: github-pages     # Nombre del artefacto a desplegar
+          preview: false                  # Despliegue de PR preview (alpha, no público)
