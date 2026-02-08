@@ -24,7 +24,10 @@ The project uses **HTML, CSS and JavaScript** with connection to **Firebase**.
 - Firebase (Authentication)
 
 ## 📜 Former Commits
-[View past commit history](https://github.com/Jesusdio2/FAES-Page/commits)
+[![Commits](https://img.shields.io/badge/FAES-Commits-blue)](https://github.com/Jesusdio2/FAES-Page/commits)
+
+## 🆕 New Commits
+[![Commits](https://img.shields.io/badge/GitHub-Commits-blue)](https://github.com/Jesusdio2/jesusdio2.github.io/commits)
 
 ## ⚙️ Local Installation
 If you want to run the project on your machine:
@@ -42,4 +45,5 @@ npx serve
 Then open it in your browser: http://localhost:3000
 
 # 📜 License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 This project is under the MIT license. See the LICENSE file for more details.
