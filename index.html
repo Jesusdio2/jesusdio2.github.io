@@ -7,7 +7,7 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0" />
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <title>FAES</title>
 
@@ -73,11 +73,22 @@
       box-sizing: border-box;
     }
 
+    html {
+
+      scroll-behavior: smooth;
+
+      -webkit-text-size-adjust: 100%;
+
+      text-size-adjust: 100%;
+    }
+
     body {
 
       margin: 0;
 
       min-height: 100vh;
+
+      min-height: 100dvh;
 
       background:
         var(--md-sys-color-background);
@@ -92,13 +103,28 @@
       display: flex;
 
       flex-direction: column;
+
+      overflow-x: hidden;
+
+      overflow-y: auto;
     }
 
-    /* Top App Bar */
+    img {
+
+      max-width: 100%;
+
+      display: block;
+    }
+
+    /* =========================
+       Top App Bar
+    ========================= */
 
     header {
 
-      height: 72px;
+      min-height: 72px;
+
+      width: 100%;
 
       padding: 0 20px;
 
@@ -106,6 +132,9 @@
         rgba(27, 31, 31, 0.92);
 
       backdrop-filter:
+        blur(12px);
+
+      -webkit-backdrop-filter:
         blur(12px);
 
       border-bottom:
@@ -151,6 +180,10 @@
         var(--md-sys-color-primary);
     }
 
+    /* =========================
+       Main Content
+    ========================= */
+
     main {
 
       flex: 1;
@@ -169,6 +202,8 @@
       flex-direction: column;
 
       align-items: center;
+
+      justify-content: center;
 
       gap: 32px;
     }
@@ -204,13 +239,13 @@
       font-size: 1.1rem;
     }
 
-    /* Material Card */
+    /* =========================
+       Material Card
+    ========================= */
 
     .game-card {
 
-      width: 100%;
-
-      max-width: 500px;
+      width: min(100%, 500px);
 
       background:
         var(--md-sys-color-surface);
@@ -263,6 +298,10 @@
         var(--md-sys-color-on-surface-variant);
     }
 
+    /* =========================
+       User Info
+    ========================= */
+
     #userInfo {
 
       padding:
@@ -295,24 +334,82 @@
       object-fit: cover;
     }
 
+    /* =========================
+       Material Buttons
+    ========================= */
+
+    md-filled-button,
+    md-outlined-button,
+    md-filled-tonal-button {
+
+      --md-filled-button-container-shape: 16px;
+
+      --md-outlined-button-container-shape: 16px;
+
+      --md-filled-tonal-button-container-shape: 16px;
+    }
+
+    /* =========================
+       Bottom App Bar
+    ========================= */
+
     footer {
 
-      padding: 20px;
+      min-height: 64px;
+
+      padding:
+        16px
+        20px
+        calc(16px + env(safe-area-inset-bottom));
 
       border-top:
         1px solid
         var(--md-sys-color-outline);
+
+      background:
+        rgba(27, 31, 31, 0.96);
+
+      backdrop-filter:
+        blur(12px);
+
+      -webkit-backdrop-filter:
+        blur(12px);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
 
       text-align: center;
 
       color:
         var(--md-sys-color-on-surface-variant);
 
-      background:
-        var(--md-sys-color-surface);
+      font-size: 0.95rem;
     }
 
-    /* Responsive */
+    /* =========================
+       Responsive Design
+    ========================= */
+
+    /* Tablets */
+
+    @media (max-width: 1024px) {
+
+      main {
+
+        padding:
+          40px 18px;
+      }
+
+      .game-card {
+
+        width: min(100%, 700px);
+      }
+    }
+
+    /* Mobile */
 
     @media (max-width: 700px) {
 
@@ -320,7 +417,11 @@
 
         height: auto;
 
-        padding: 16px;
+        padding:
+          max(16px, env(safe-area-inset-top))
+          16px
+          16px
+          16px;
 
         flex-direction: column;
 
@@ -330,12 +431,167 @@
       .header-left,
       .header-right {
 
+        width: 100%;
+
         justify-content: center;
+      }
+
+      .header-left {
+
+        flex-direction: column;
+      }
+
+      .header-right {
+
+        flex-wrap: wrap;
+      }
+
+      md-filled-button,
+      md-outlined-button,
+      md-filled-tonal-button {
+
+        width: 100%;
+      }
+
+      main {
+
+        padding:
+          32px 16px;
+      }
+
+      .hero h1 {
+
+        font-size:
+          clamp(1.8rem, 8vw, 2.5rem);
+      }
+
+      .hero p {
+
+        font-size:
+          1rem;
       }
 
       .game-card {
 
         border-radius: 20px;
+
+        padding: 22px;
+      }
+
+      .game-card h2 {
+
+        font-size: 1.4rem;
+      }
+    }
+
+    /* Small phones */
+
+    @media (max-width: 400px) {
+
+      .logo {
+
+        font-size: 1.1rem;
+      }
+
+      .hero h1 {
+
+        font-size: 1.6rem;
+      }
+
+      .game-card {
+
+        padding: 18px;
+
+        border-radius: 18px;
+      }
+
+      #userInfo {
+
+        width: 100%;
+
+        text-align: center;
+      }
+    }
+
+    /* Landscape phones */
+
+    @media (max-height: 500px)
+    and (orientation: landscape) {
+
+      header {
+
+        position: relative;
+      }
+
+      main {
+
+        padding-top: 24px;
+      }
+
+      .hero {
+
+        gap: 6px;
+      }
+
+      .game-card {
+
+        width: min(100%, 900px);
+      }
+    }
+
+    /* Large screens */
+
+    @media (min-width: 1600px) {
+
+      main {
+
+        max-width: 1400px;
+      }
+
+      .hero h1 {
+
+        font-size: 4.5rem;
+      }
+
+      .game-card {
+
+        width: min(100%, 650px);
+
+        padding: 36px;
+      }
+    }
+
+    /* TVs / 4K */
+
+    @media (min-width: 2200px) {
+
+      body {
+
+        font-size: 1.25rem;
+      }
+
+      .hero h1 {
+
+        font-size: 6rem;
+      }
+
+      .game-card {
+
+        width: min(100%, 800px);
+      }
+    }
+
+    /* Reduce Motion */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      * {
+
+        animation: none !important;
+
+        transition: none !important;
+
+        scroll-behavior: auto !important;
       }
     }
 
@@ -441,7 +697,7 @@
 
   </main>
 
-  <!-- Footer -->
+  <!-- Bottom App Bar -->
 
   <footer>
 
@@ -531,18 +787,9 @@
 
         try {
 
-          const result =
-            await signInWithPopup(
-              auth,
-              provider
-            );
-
-          const user =
-            result.user;
-
-          console.log(
-            "Usuario conectado:",
-            user
+          await signInWithPopup(
+            auth,
+            provider
           );
 
         } catch (error) {
@@ -579,7 +826,7 @@
       }
     );
 
-    // Estado de autenticación
+    // Auth State
 
     onAuthStateChanged(
       auth,
@@ -636,4 +883,5 @@
   </script>
 
 </body>
+
 </html>
