@@ -1,161 +1,399 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>FAES</title>
 
-  <link rel="icon" href="res/icon.png">
+  <link rel="icon" href="res/icon.png" />
 
-  <!-- Material Web Components (Material 3) -->
-  <script type="module" src="https://esm.run/@material/web/all"></script>
+  <!-- Material Web -->
+  <script
+    type="module"
+    src="https://esm.run/@material/web/all">
+  </script>
+
+  <!-- Google Fonts -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
 
   <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
 
   <style>
+
     :root {
-      --md-sys-color-primary: #00ff00;
-      --md-sys-color-on-primary: #111;
 
-      --md-sys-color-secondary: #00ffff;
-      --md-sys-color-on-secondary: #111;
+      /* Material 3 Dark Theme */
 
-      --md-sys-color-background: #111;
-      --md-sys-color-surface: #2e2e2e;
-      --md-sys-color-on-surface: #0f0;
+      --md-sys-color-primary: #7dff86;
+      --md-sys-color-on-primary: #002204;
+
+      --md-sys-color-secondary: #7dd3fc;
+
+      --md-sys-color-background: #101414;
+
+      --md-sys-color-surface: #1b1f1f;
+
+      --md-sys-color-surface-container: #232828;
+
+      --md-sys-color-outline: #3f4948;
+
+      --md-sys-color-on-surface: #e2e3df;
+
+      --md-sys-color-on-surface-variant: #b0b8b4;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      background-color: var(--md-sys-color-background);
-      color: var(--md-sys-color-on-surface);
 
-      font-family: monospace;
-
-      display: flex;
-      flex-direction: column;
+      margin: 0;
 
       min-height: 100vh;
 
-      text-align: center;
+      background:
+        var(--md-sys-color-background);
 
-      text-shadow:
-        0 0 5px #0f0,
-        0 0 10px #0f0;
+      color:
+        var(--md-sys-color-on-surface);
 
-      margin: 0;
-    }
-
-    main {
-      flex: 1;
-      padding: 20px;
+      font-family:
+        "Roboto",
+        sans-serif;
 
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      gap: 20px;
     }
 
-    header,
-    footer {
-      background-color: var(--md-sys-color-surface);
+    /* Top App Bar */
 
-      border: 2px solid var(--md-sys-color-primary);
+    header {
 
-      padding: 10px;
+      height: 72px;
+
+      padding: 0 20px;
+
+      background:
+        rgba(27, 31, 31, 0.92);
+
+      backdrop-filter: blur(12px);
+
+      border-bottom:
+        1px solid
+        var(--md-sys-color-outline);
 
       display: flex;
-      justify-content: center;
+
       align-items: center;
 
-      gap: 15px;
+      justify-content: space-between;
+
+      gap: 16px;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+    }
+
+    .header-left,
+    .header-right {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
 
       flex-wrap: wrap;
     }
 
-    footer p {
+    .logo {
+
+      font-size: 1.3rem;
+
+      font-weight: 700;
+
+      letter-spacing: 1px;
+
+      color:
+        var(--md-sys-color-primary);
+    }
+
+    main {
+
+      flex: 1;
+
+      width: 100%;
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding:
+        48px 20px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 32px;
+    }
+
+    .hero {
+
+      text-align: center;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 12px;
+    }
+
+    .hero h1 {
+
       margin: 0;
-      color: var(--md-sys-color-primary);
+
+      font-size: clamp(2rem, 5vw, 3.5rem);
+
+      font-weight: 700;
+    }
+
+    .hero p {
+
+      margin: 0;
+
+      color:
+        var(--md-sys-color-on-surface-variant);
+
+      font-size: 1.1rem;
+    }
+
+    /* Material Card */
+
+    .game-card {
+
+      width: 100%;
+
+      max-width: 500px;
+
+      background:
+        var(--md-sys-color-surface);
+
+      border:
+        1px solid
+        var(--md-sys-color-outline);
+
+      border-radius: 28px;
+
+      padding: 28px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 18px;
+
+      box-shadow:
+        0 4px 18px rgba(0,0,0,0.28);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .game-card:hover {
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 10px 24px rgba(0,0,0,0.36);
+    }
+
+    .game-card h2 {
+
+      margin: 0;
+
+      font-size: 1.6rem;
+    }
+
+    .game-card p {
+
+      margin: 0;
+
+      line-height: 1.6;
+
+      color:
+        var(--md-sys-color-on-surface-variant);
+    }
+
+    #userInfo {
+
+      padding:
+        12px 18px;
+
+      border-radius: 999px;
+
+      background:
+        var(--md-sys-color-surface-container);
+
+      color:
+        var(--md-sys-color-on-surface);
+
+      font-size: 0.95rem;
     }
 
     #userIcon img {
-      width: 32px;
-      height: 32px;
+
+      width: 36px;
+      height: 36px;
 
       border-radius: 50%;
-      border: 2px solid #0f0;
     }
 
-    .game-box {
-      border: 2px solid #0f0;
-      background: #1a1a1a;
+    footer {
 
       padding: 20px;
 
-      border-radius: 12px;
+      border-top:
+        1px solid
+        var(--md-sys-color-outline);
 
-      box-shadow:
-        0 0 10px #0f0,
-        inset 0 0 10px #0f0;
+      text-align: center;
 
-      max-width: 500px;
+      color:
+        var(--md-sys-color-on-surface-variant);
+
+      background:
+        var(--md-sys-color-surface);
     }
 
-    .game-box h2 {
-      margin-top: 0;
+    /* Responsive */
+
+    @media (max-width: 700px) {
+
+      header {
+
+        height: auto;
+
+        padding: 16px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+      }
+
+      .header-left,
+      .header-right {
+
+        justify-content: center;
+      }
+
+      .game-card {
+
+        border-radius: 20px;
+      }
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- Barra superior -->
+  <!-- Top App Bar -->
+
   <header>
 
-    <md-filled-tonal-button
-      href="https://www.youtube.com/@FAESWSPVZ191"
-      target="_blank">
-      YouTube
-    </md-filled-tonal-button>
+    <div class="header-left">
 
-    <md-filled-tonal-button
-      href="https://x.com/FAESWSPVZ191"
-      target="_blank">
-      X
-    </md-filled-tonal-button>
+      <div class="logo">
+        FAES
+      </div>
 
-    <md-filled-button id="loginBtn">
-      Login
-    </md-filled-button>
+      <md-filled-tonal-button
+        href="https://www.youtube.com/@FAESWSPVZ191"
+        target="_blank">
 
-    <md-outlined-button id="logoutBtn">
-      Logout
-    </md-outlined-button>
+        YouTube
 
-    <!-- Icono de usuario -->
-    <md-icon-button id="userIcon">
-      <span class="material-icons">
-        account_circle
-      </span>
-    </md-icon-button>
+      </md-filled-tonal-button>
+
+      <md-filled-tonal-button
+        href="https://x.com/FAESWSPVZ191"
+        target="_blank">
+
+        X
+
+      </md-filled-tonal-button>
+
+    </div>
+
+    <div class="header-right">
+
+      <md-filled-button id="loginBtn">
+        Login
+      </md-filled-button>
+
+      <md-outlined-button id="logoutBtn">
+        Logout
+      </md-outlined-button>
+
+      <md-icon-button id="userIcon">
+
+        <span class="material-icons">
+          account_circle
+        </span>
+
+      </md-icon-button>
+
+    </div>
 
   </header>
 
-  <!-- Contenido principal -->
+  <!-- Main -->
+
   <main>
 
-    <h1 id="title">
-      Bienvenido a FAES
-    </h1>
+    <section class="hero">
 
-    <p id="userInfo">
-      No hay sesión activa.
-    </p>
+      <h1>
+        Bienvenido a FAES
+      </h1>
 
-    <!-- Caja del juego -->
-    <div class="game-box">
+      <p id="userInfo">
+        No hay sesión activa.
+      </p>
+
+    </section>
+
+    <!-- Project Card -->
+
+    <section class="game-card">
 
       <h2>
         Prueba3D
@@ -173,157 +411,17 @@
 
       </md-filled-button>
 
-    </div>
+    </section>
 
   </main>
 
   <!-- Footer -->
+
   <footer>
-    <p>
-      © 2026 Francisco — Proyecto bajo Licencia MIT.
-    </p>
+
+    © 2026 Francisco — Proyecto bajo Licencia MIT.
+
   </footer>
-
-  <!-- Firebase -->
-  <script type="module">
-
-    import {
-      initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
-
-    import {
-      getAnalytics
-    } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
-
-    import {
-      getAuth,
-      GoogleAuthProvider,
-      signInWithPopup,
-      signOut,
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
-
-    const firebaseConfig = {
-
-      apiKey:
-        "AIzaSyAOmXcJaujzmMwmHDIbCOUzTh-dlFQKdIA",
-
-      authDomain:
-        "faes-page.firebaseapp.com",
-
-      projectId:
-        "faes-page",
-
-      storageBucket:
-        "faes-page.firebasestorage.app",
-
-      messagingSenderId:
-        "880596540892",
-
-      appId:
-        "1:880596540892:web:f606b56a7d341a0e514319",
-
-      measurementId:
-        "G-PVR2V1FQ33"
-    };
-
-    const app = initializeApp(firebaseConfig);
-
-    const analytics = getAnalytics(app);
-
-    const auth = getAuth(app);
-
-    const provider = new GoogleAuthProvider();
-
-    const loginBtn =
-      document.getElementById("loginBtn");
-
-    const logoutBtn =
-      document.getElementById("logoutBtn");
-
-    const userInfo =
-      document.getElementById("userInfo");
-
-    const userIcon =
-      document.getElementById("userIcon");
-
-    loginBtn.addEventListener(
-      "click",
-      async () => {
-
-        try {
-
-          const result =
-            await signInWithPopup(auth, provider);
-
-          const user = result.user;
-
-          const firstName =
-            user.displayName
-              ? user.displayName.split(" ")[0]
-              : "";
-
-          userInfo.textContent =
-            `Hola, ${firstName}`;
-
-          userIcon.innerHTML =
-            `<img src="${user.photoURL || 'res/profile.png'}">`;
-
-        } catch (error) {
-
-          console.error(error);
-
-        }
-
-      }
-    );
-
-    logoutBtn.addEventListener(
-      "click",
-      async () => {
-
-        await signOut(auth);
-
-        userInfo.textContent =
-          "Sesión cerrada.";
-
-        userIcon.innerHTML =
-          `<span class="material-icons">account_circle</span>`;
-
-      }
-    );
-
-    onAuthStateChanged(
-      auth,
-      (user) => {
-
-        if (user) {
-
-          const firstName =
-            user.displayName
-              ? user.displayName.split(" ")[0]
-              : "";
-
-          userInfo.textContent =
-            `Conectado: ${firstName}`;
-
-          userIcon.innerHTML =
-            `<img src="${user.photoURL || 'res/profile.png'}">`;
-
-        } else {
-
-          userInfo.textContent =
-            "No hay sesión activa.";
-
-          userIcon.innerHTML =
-            `<span class="material-icons">account_circle</span>`;
-
-        }
-
-      }
-    );
-
-  </script>
 
 </body>
 </html>
