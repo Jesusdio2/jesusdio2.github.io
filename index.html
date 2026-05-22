@@ -393,8 +393,6 @@
        Responsive Design
     ========================= */
 
-    /* Tablets */
-
     @media (max-width: 1024px) {
 
       main {
@@ -408,8 +406,6 @@
         width: min(100%, 700px);
       }
     }
-
-    /* Mobile */
 
     @media (max-width: 700px) {
 
@@ -484,8 +480,6 @@
       }
     }
 
-    /* Small phones */
-
     @media (max-width: 400px) {
 
       .logo {
@@ -513,8 +507,6 @@
       }
     }
 
-    /* Landscape phones */
-
     @media (max-height: 500px)
     and (orientation: landscape) {
 
@@ -539,8 +531,6 @@
       }
     }
 
-    /* Large screens */
-
     @media (min-width: 1600px) {
 
       main {
@@ -561,8 +551,6 @@
       }
     }
 
-    /* TVs / 4K */
-
     @media (min-width: 2200px) {
 
       body {
@@ -580,8 +568,6 @@
         width: min(100%, 800px);
       }
     }
-
-    /* Reduce Motion */
 
     @media (prefers-reduced-motion: reduce) {
 
@@ -610,6 +596,13 @@
       <div class="logo">
         FAES
       </div>
+
+      <md-filled-tonal-button
+        id="languageBtn">
+
+        🌐 Idioma
+
+      </md-filled-tonal-button>
 
       <md-filled-tonal-button
         href="https://www.youtube.com/@FAESWSPVZ191"
@@ -663,12 +656,16 @@
 
     <section class="hero">
 
-      <h1>
+      <h1 data-i18n="welcome">
         Bienvenido a FAES
       </h1>
 
-      <p id="userInfo">
+      <p
+        id="userInfo"
+        data-i18n="noSession">
+
         No hay sesión activa.
+
       </p>
 
     </section>
@@ -677,17 +674,18 @@
 
     <section class="game-card">
 
-      <h2>
+      <h2 data-i18n="projectTitle">
         Prueba3D
       </h2>
 
-      <p>
+      <p data-i18n="projectDescription">
         Proyecto experimental 3D publicado en GitHub.
       </p>
 
       <md-filled-button
         href="https://github.com/FAES2/Prueba3D"
-        target="_blank">
+        target="_blank"
+        data-i18n="viewProject">
 
         Ver Proyecto
 
@@ -699,7 +697,8 @@
 
   <!-- Bottom App Bar -->
 
-  <footer>
+  <footer
+    data-i18n="footer">
 
     © 2026 Francisco — Proyecto bajo Licencia MIT.
 
@@ -725,7 +724,9 @@
       onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
+    // =========================
     // Firebase Config
+    // =========================
 
     const firebaseConfig = {
 
@@ -751,7 +752,9 @@
         "G-PVR2V1FQ33"
     };
 
-    // Initialize Firebase
+    // =========================
+    // Firebase Init
+    // =========================
 
     const app =
       initializeApp(firebaseConfig);
@@ -765,7 +768,9 @@
     const provider =
       new GoogleAuthProvider();
 
+    // =========================
     // UI Elements
+    // =========================
 
     const loginBtn =
       document.getElementById("loginBtn");
@@ -779,7 +784,267 @@
     const userIcon =
       document.getElementById("userIcon");
 
+    const languageBtn =
+      document.getElementById(
+        "languageBtn"
+      );
+
+    // =========================
+    // Languages
+    // =========================
+
+    const translations = {
+
+      es: {
+
+        welcome:
+          "Bienvenido a FAES",
+
+        noSession:
+          "No hay sesión activa.",
+
+        connected:
+          "Conectado:",
+
+        projectTitle:
+          "Prueba3D",
+
+        projectDescription:
+          "Proyecto experimental 3D publicado en GitHub.",
+
+        viewProject:
+          "Ver Proyecto",
+
+        footer:
+          "© 2026 Francisco — Proyecto bajo Licencia MIT.",
+
+        login:
+          "Login",
+
+        logout:
+          "Logout",
+
+        language:
+          "🌐 Idioma"
+      },
+
+      en: {
+
+        welcome:
+          "Welcome to FAES",
+
+        noSession:
+          "No active session.",
+
+        connected:
+          "Connected:",
+
+        projectTitle:
+          "Prueba3D",
+
+        projectDescription:
+          "Experimental 3D project published on GitHub.",
+
+        viewProject:
+          "View Project",
+
+        footer:
+          "© 2026 Francisco — Project under MIT License.",
+
+        login:
+          "Login",
+
+        logout:
+          "Logout",
+
+        language:
+          "🌐 Language"
+      },
+
+      ja: {
+
+        welcome:
+          "FAESへようこそ",
+
+        noSession:
+          "ログインしていません。",
+
+        connected:
+          "接続済み:",
+
+        projectTitle:
+          "Prueba3D",
+
+        projectDescription:
+          "GitHubで公開されている実験的な3Dプロジェクト。",
+
+        viewProject:
+          "プロジェクトを見る",
+
+        footer:
+          "© 2026 Francisco — MITライセンス。",
+
+        login:
+          "ログイン",
+
+        logout:
+          "ログアウト",
+
+        language:
+          "🌐 言語"
+      },
+
+      pt: {
+
+        welcome:
+          "Bem-vindo ao FAES",
+
+        noSession:
+          "Nenhuma sessão ativa.",
+
+        connected:
+          "Conectado:",
+
+        projectTitle:
+          "Prueba3D",
+
+        projectDescription:
+          "Projeto 3D experimental publicado no GitHub.",
+
+        viewProject:
+          "Ver Projeto",
+
+        footer:
+          "© 2026 Francisco — Projeto sob licença MIT.",
+
+        login:
+          "Entrar",
+
+        logout:
+          "Sair",
+
+        language:
+          "🌐 Idioma"
+      },
+
+      fr: {
+
+        welcome:
+          "Bienvenue sur FAES",
+
+        noSession:
+          "Aucune session active.",
+
+        connected:
+          "Connecté :",
+
+        projectTitle:
+          "Prueba3D",
+
+        projectDescription:
+          "Projet 3D expérimental publié sur GitHub.",
+
+        viewProject:
+          "Voir le projet",
+
+        footer:
+          "© 2026 Francisco — Projet sous licence MIT.",
+
+        login:
+          "Connexion",
+
+        logout:
+          "Déconnexion",
+
+        language:
+          "🌐 Langue"
+      }
+    };
+
+    let currentLanguage =
+      localStorage.getItem(
+        "language"
+      ) ||
+      navigator.language.slice(0, 2);
+
+    if (!translations[currentLanguage]) {
+
+      currentLanguage = "en";
+    }
+
+    function applyLanguage(lang) {
+
+      currentLanguage = lang;
+
+      localStorage.setItem(
+        "language",
+        lang
+      );
+
+      document.documentElement.lang =
+        lang;
+
+      const elements =
+        document.querySelectorAll(
+          "[data-i18n]"
+        );
+
+      elements.forEach((element) => {
+
+        const key =
+          element.dataset.i18n;
+
+        if (
+          translations[lang][key]
+        ) {
+
+          element.textContent =
+            translations[lang][key];
+        }
+
+      });
+
+      loginBtn.textContent =
+        translations[lang].login;
+
+      logoutBtn.textContent =
+        translations[lang].logout;
+
+      languageBtn.textContent =
+        translations[lang].language;
+    }
+
+    applyLanguage(
+      currentLanguage
+    );
+
+    languageBtn.addEventListener(
+      "click",
+      () => {
+
+        const languages =
+          Object.keys(
+            translations
+          );
+
+        let index =
+          languages.indexOf(
+            currentLanguage
+          );
+
+        index =
+          (index + 1) %
+          languages.length;
+
+        applyLanguage(
+          languages[index]
+        );
+      }
+    );
+
+    // =========================
     // Login
+    // =========================
 
     loginBtn.addEventListener(
       "click",
@@ -804,7 +1069,9 @@
       }
     );
 
+    // =========================
     // Logout
+    // =========================
 
     logoutBtn.addEventListener(
       "click",
@@ -826,7 +1093,9 @@
       }
     );
 
+    // =========================
     // Auth State
+    // =========================
 
     onAuthStateChanged(
       auth,
@@ -840,7 +1109,7 @@
               : "Usuario";
 
           userInfo.textContent =
-            `Conectado: ${firstName}`;
+            `${translations[currentLanguage].connected} ${firstName}`;
 
           userIcon.innerHTML =
             `
@@ -861,7 +1130,8 @@
         } else {
 
           userInfo.textContent =
-            "No hay sesión activa.";
+            translations[currentLanguage]
+              .noSession;
 
           userIcon.innerHTML =
             `
