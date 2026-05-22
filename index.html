@@ -1,13 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0" />
+
+  <title>FAES</title>
+
+  <link
+    rel="icon"
+    href="res/icon.png" />
+
+  <!-- Material Web Components -->
+
+  <script
+    type="module"
+    src="https://esm.run/@material/web/all">
+  </script>
+
+  <!-- Google Fonts -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Material Icons -->
+
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+
+  <style>
+
+    :root {
+
+      /* Material 3 Dark Theme */
+
+      --md-sys-color-primary: #7dff86;
+
+      --md-sys-color-on-primary: #002204;
+
+      --md-sys-color-secondary: #7dd3fc;
+
+      --md-sys-color-background: #101414;
+
+      --md-sys-color-surface: #1b1f1f;
+
+      --md-sys-color-surface-container: #232828;
+
+      --md-sys-color-outline: #3f4948;
+
+      --md-sys-color-on-surface: #e2e3df;
+
+      --md-sys-color-on-surface-variant: #b0b8b4;
+    }
+
+    * {
+
+      box-sizing: border-box;
+    }
+
+    body {
+
+      margin: 0;
+
+      min-height: 100vh;
+
+      background:
+        var(--md-sys-color-background);
+
+      color:
+        var(--md-sys-color-on-surface);
+
+      font-family:
+        "Roboto",
+        sans-serif;
+
+      display: flex;
+
+      flex-direction: column;
+    }
+
+    /* Top App Bar */
+
+    header {
+
+      height: 72px;
+
+      padding: 0 20px;
+
+      background:
+        rgba(27, 31, 31, 0.92);
+
+      backdrop-filter:
+        blur(12px);
+
+      border-bottom:
+        1px solid
+        var(--md-sys-color-outline);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 16px;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+    }
+
+    .header-left,
+    .header-right {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+    }
+
+    .logo {
+
+      font-size: 1.3rem;
+
+      font-weight: 700;
+
+      letter-spacing: 1px;
+
+      color:
+        var(--md-sys-color-primary);
+    }
+
+    main {
+
+      flex: 1;
+
+      width: 100%;
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding:
+        48px 20px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 32px;
+    }
+
+    .hero {
+
+      text-align: center;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 12px;
+    }
+
+    .hero h1 {
+
+      margin: 0;
+
+      font-size:
+        clamp(2rem, 5vw, 3.5rem);
+
+      font-weight: 700;
+    }
+
+    .hero p {
+
+      margin: 0;
+
+      color:
+        var(--md-sys-color-on-surface-variant);
+
+      font-size: 1.1rem;
+    }
+
+    /* Material Card */
+
+    .game-card {
+
+      width: 100%;
+
+      max-width: 500px;
+
+      background:
+        var(--md-sys-color-surface);
+
+      border:
+        1px solid
+        var(--md-sys-color-outline);
+
+      border-radius: 28px;
+
+      padding: 28px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 18px;
+
+      box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.28);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .game-card:hover {
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.36);
+    }
+
+    .game-card h2 {
+
+      margin: 0;
+
+      font-size: 1.6rem;
+    }
+
+    .game-card p {
+
+      margin: 0;
+
+      line-height: 1.6;
+
+      color:
+        var(--md-sys-color-on-surface-variant);
+    }
+
+    #userInfo {
+
+      padding:
+        12px 18px;
+
+      border-radius: 999px;
+
+      background:
+        var(--md-sys-color-surface-container);
+
+      color:
+        var(--md-sys-color-on-surface);
+
+      font-size: 0.95rem;
+    }
+
+    #userIcon {
+
+      overflow: hidden;
+
+      border-radius: 50%;
+    }
+
+    #userIcon img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    footer {
+
+      padding: 20px;
+
+      border-top:
+        1px solid
+        var(--md-sys-color-outline);
+
+      text-align: center;
+
+      color:
+        var(--md-sys-color-on-surface-variant);
+
+      background:
+        var(--md-sys-color-surface);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 700px) {
+
+      header {
+
+        height: auto;
+
+        padding: 16px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+      }
+
+      .header-left,
+      .header-right {
+
+        justify-content: center;
+      }
+
+      .game-card {
+
+        border-radius: 20px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Top App Bar -->
+
+  <header>
+
+    <div class="header-left">
+
+      <div class="logo">
+        FAES
+      </div>
+
+      <md-filled-tonal-button
+        href="https://www.youtube.com/@FAESWSPVZ191"
+        target="_blank">
+
+        YouTube
+
+      </md-filled-tonal-button>
+
+      <md-filled-tonal-button
+        href="https://x.com/FAESWSPVZ191"
+        target="_blank">
+
+        X
+
+      </md-filled-tonal-button>
+
+    </div>
+
+    <div class="header-right">
+
+      <md-filled-button id="loginBtn">
+
+        Login
+
+      </md-filled-button>
+
+      <md-outlined-button
+        id="logoutBtn"
+        style="display: none;">
+
+        Logout
+
+      </md-outlined-button>
+
+      <md-icon-button id="userIcon">
+
+        <span class="material-icons">
+          account_circle
+        </span>
+
+      </md-icon-button>
+
+    </div>
+
+  </header>
+
+  <!-- Main -->
+
+  <main>
+
+    <section class="hero">
+
+      <h1>
+        Bienvenido a FAES
+      </h1>
+
+      <p id="userInfo">
+        No hay sesión activa.
+      </p>
+
+    </section>
+
+    <!-- Project Card -->
+
+    <section class="game-card">
+
+      <h2>
+        Prueba3D
+      </h2>
+
+      <p>
+        Proyecto experimental 3D publicado en GitHub.
+      </p>
+
+      <md-filled-button
+        href="https://github.com/FAES2/Prueba3D"
+        target="_blank">
+
+        Ver Proyecto
+
+      </md-filled-button>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+
+  <footer>
+
+    © 2026 Francisco — Proyecto bajo Licencia MIT.
+
+  </footer>
+
   <!-- Firebase -->
+
   <script type="module">
 
     import {
       initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+    } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
     import {
       getAnalytics
-    } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
+    } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
 
     import {
       getAuth,
@@ -15,31 +467,35 @@
       signInWithPopup,
       signOut,
       onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+    } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+    // Firebase Config
 
     const firebaseConfig = {
 
       apiKey:
-        "TU_API_KEY",
+        "AIzaSyAOmXcJaujzmMwmHDIbCOUzTh-dlFQKdIA",
 
       authDomain:
-        "tu-app.firebaseapp.com",
+        "faes-page.firebaseapp.com",
 
       projectId:
-        "tu-app",
+        "faes-page",
 
       storageBucket:
-        "tu-app.appspot.com",
+        "faes-page.firebasestorage.app",
 
       messagingSenderId:
-        "XXXXXXXX",
+        "880596540892",
 
       appId:
-        "XXXXXXXX",
+        "1:880596540892:web:f606b56a7d341a0e514319",
 
       measurementId:
-        "XXXXXXXX"
+        "G-PVR2V1FQ33"
     };
+
+    // Initialize Firebase
 
     const app =
       initializeApp(firebaseConfig);
@@ -53,6 +509,8 @@
     const provider =
       new GoogleAuthProvider();
 
+    // UI Elements
+
     const loginBtn =
       document.getElementById("loginBtn");
 
@@ -64,6 +522,8 @@
 
     const userIcon =
       document.getElementById("userIcon");
+
+    // Login
 
     loginBtn.addEventListener(
       "click",
@@ -80,37 +540,46 @@
           const user =
             result.user;
 
-          const firstName =
-            user.displayName
-              ? user.displayName.split(" ")[0]
-              : "";
-
-          userInfo.textContent =
-            `Hola, ${firstName}`;
-
-          userIcon.innerHTML =
-            `<img src="${
-              user.photoURL ||
-              'res/profile.png'
-            }">`;
+          console.log(
+            "Usuario conectado:",
+            user
+          );
 
         } catch (error) {
 
-          console.error(error);
+          console.error(
+            "Error al iniciar sesión:",
+            error
+          );
 
         }
 
       }
     );
 
+    // Logout
+
     logoutBtn.addEventListener(
       "click",
       async () => {
 
-        await signOut(auth);
+        try {
+
+          await signOut(auth);
+
+        } catch (error) {
+
+          console.error(
+            "Error al cerrar sesión:",
+            error
+          );
+
+        }
 
       }
     );
+
+    // Estado de autenticación
 
     onAuthStateChanged(
       auth,
@@ -121,16 +590,26 @@
           const firstName =
             user.displayName
               ? user.displayName.split(" ")[0]
-              : "";
+              : "Usuario";
 
           userInfo.textContent =
             `Conectado: ${firstName}`;
 
           userIcon.innerHTML =
-            `<img src="${
-              user.photoURL ||
-              'res/profile.png'
-            }">`;
+            `
+            <img
+              src="${
+                user.photoURL ||
+                'res/profile.png'
+              }"
+              alt="Avatar">
+            `;
+
+          loginBtn.style.display =
+            "none";
+
+          logoutBtn.style.display =
+            "inline-flex";
 
         } else {
 
@@ -143,9 +622,18 @@
               account_circle
             </span>
             `;
+
+          loginBtn.style.display =
+            "inline-flex";
+
+          logoutBtn.style.display =
+            "none";
         }
 
       }
     );
 
   </script>
+
+</body>
+</html>
