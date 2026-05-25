@@ -3,45 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dependencia Sketchware Pro</title>
+    <title>Configuración CardView - Sketchware Pro</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             padding: 20px;
             background-color: #121212;
             color: #ffffff;
+            line-height: 1.5;
         }
         h1 {
-            font-size: 20px;
+            font-size: 22px;
             color: #ff9800;
+            margin-bottom: 5px;
         }
-        p {
+        .subtitle {
             font-size: 14px;
             color: #b0bec5;
+            margin-bottom: 25px;
         }
-        /* Bloque contenedor optimizado para texto plano puro */
+        .field-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 13px;
+            color: #ffb74d;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        /* Bloque optimizado para copiar texto plano fácilmente */
         pre {
             background-color: #1e1e1e;
-            color: #4caf50;
-            padding: 16px;
+            color: #e0e0e0;
+            padding: 14px;
             border-radius: 8px;
             border: 1px solid #333333;
-            overflow-x: auto;
+            margin: 0;
             font-family: "Courier New", Courier, monospace;
             font-size: 15px;
-            font-weight: bold;
-            white-space: pre-wrap; /* Ajusta el texto al ancho de la pantalla móvil */
+            white-space: pre-wrap;
             word-break: break-all;
+        }
+        .highlight {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .info-text {
+            font-style: italic;
+            color: #90a4ae;
+            font-size: 14px;
+            padding: 5px 0;
         }
     </style>
 </head>
 <body>
 
-    <h1>CardView para Sketchware Pro</h1>
-    <p>Introduce este texto directamente en el gestor de librerías locales de tu proyecto:</p>
+    <h1>Configuración de Custom Widget</h1>
+    <div class="subtitle">CardView para Sketchware Pro</div>
 
-    <!-- Texto plano limpio, listo para visualizar en Sketchware Pro -->
-    <pre>androidx.cardview:cardview:1.0.0</pre>
+    <!-- Librería requerida -->
+    <div class="field-group">
+        <label>Core / Local Library Dependency</label>
+        <pre class="highlight">androidx.cardview:cardview:1.0.0</pre>
+    </div>
+
+    <!-- Widget Title -->
+    <div class="field-group">
+        <label>Widget Title</label>
+        <pre>CardViewWidget</pre>
+    </div>
+
+    <!-- Class Name -->
+    <div class="field-group">
+        <label>Class Name</label>
+        <pre>androidx.cardview.widget.CardView</pre>
+    </div>
+
+    <!-- Widget Type -->
+    <div class="field-group">
+        <label>Select Widget Type</label>
+        <div class="info-text">Selecciona <strong>Layout</strong> (ya que funciona como un contenedor para meter otros elementos dentro).</div>
+    </div>
+
+    <!-- Category -->
+    <div class="field-group">
+        <label>Select Category</label>
+        <div class="info-text">Selecciona <strong>AndroidX</strong> (o <strong>Containers</strong> según las categorías que tengas creadas).</div>
+    </div>
+
+    <!-- XML Attributes -->
+    <div class="field-group">
+        <label>XML Attributes</label>
+        <div class="info-text">Copia y pega la siguiente configuración base para las sombras y esquinas:</div>
+        <pre>app:cardCornerRadius="8dp"
+app:cardElevation="4dp"
+app:cardUseCompatPadding="true"</pre>
+    </div>
 
 </body>
 </html>
