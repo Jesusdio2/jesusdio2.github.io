@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuración CardView - Sketchware Pro</title>
+
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -12,19 +13,23 @@
             color: #ffffff;
             line-height: 1.5;
         }
+
         h1 {
             font-size: 22px;
             color: #ff9800;
             margin-bottom: 5px;
         }
+
         .subtitle {
             font-size: 14px;
             color: #b0bec5;
             margin-bottom: 25px;
         }
+
         .field-group {
             margin-bottom: 20px;
         }
+
         label {
             display: block;
             font-size: 13px;
@@ -33,7 +38,7 @@
             text-transform: uppercase;
             margin-bottom: 6px;
         }
-        /* Bloque optimizado para copiar texto plano fácilmente */
+
         pre {
             background-color: #1e1e1e;
             color: #e0e0e0;
@@ -46,10 +51,12 @@
             white-space: pre-wrap;
             word-break: break-all;
         }
+
         .highlight {
             color: #4caf50;
             font-weight: bold;
         }
+
         .info-text {
             font-style: italic;
             color: #90a4ae;
@@ -84,22 +91,97 @@
     <!-- Widget Type -->
     <div class="field-group">
         <label>Select Widget Type</label>
-        <div class="info-text">Selecciona <strong>Layout</strong> (ya que funciona como un contenedor para meter otros elementos dentro).</div>
+        <div class="info-text">
+            Selecciona <strong>Layout</strong> (ya que funciona como un contenedor para meter otros elementos dentro).
+        </div>
     </div>
 
     <!-- Category -->
     <div class="field-group">
         <label>Select Category</label>
-        <div class="info-text">Selecciona <strong>AndroidX</strong> (o <strong>Containers</strong> según las categorías que tengas creadas).</div>
+        <div class="info-text">
+            Selecciona <strong>AndroidX</strong> o <strong>Containers</strong>.
+        </div>
     </div>
 
     <!-- XML Attributes -->
     <div class="field-group">
         <label>XML Attributes</label>
-        <div class="info-text">Copia y pega la siguiente configuración base para las sombras y esquinas:</div>
+        <div class="info-text">
+            Configuración base para esquinas redondeadas y sombras.
+        </div>
         <pre>app:cardCornerRadius="8dp"
 app:cardElevation="4dp"
 app:cardUseCompatPadding="true"</pre>
+    </div>
+
+    <!-- Android Themes -->
+    <div class="field-group">
+        <label>Android Themes (Ejemplos)</label>
+        <div class="info-text">
+            Temas clásicos que pueden aplicarse desde el Manifest o código Java.
+        </div>
+        <pre>@android:style/Theme
+@android:style/Theme.Light
+
+@android:style/Theme.Holo
+@android:style/Theme.Holo.Light
+@android:style/Theme.Holo.Light.DarkActionBar
+
+@android:style/Theme.DeviceDefault
+@android:style/Theme.DeviceDefault.Light
+@android:style/Theme.DeviceDefault.Light.DarkActionBar
+
+@android:style/Theme.Material
+@android:style/Theme.Material.Light
+@android:style/Theme.Material.Light.DarkActionBar</pre>
+    </div>
+
+    <!-- Manifest Example -->
+    <div class="field-group">
+        <label>AndroidManifest.xml</label>
+        <div class="info-text">
+            Ejemplo para activar Holo Theme en toda la aplicación.
+        </div>
+        <pre>&lt;application
+    android:theme="@android:style/Theme.Holo"&gt;
+
+    &lt;activity
+        android:name=".MainActivity" /&gt;
+
+&lt;/application&gt;</pre>
+    </div>
+
+    <!-- Activity Theme -->
+    <div class="field-group">
+        <label>Theme Solo Para Una Activity</label>
+        <pre>&lt;activity
+    android:name=".MainActivity"
+    android:theme="@android:style/Theme.Holo.Light.DarkActionBar" /&gt;</pre>
+    </div>
+
+    <!-- Java Example -->
+    <div class="field-group">
+        <label>Java Example</label>
+        <div class="info-text">
+            Debe ejecutarse antes de super.onCreate().
+        </div>
+        <pre>@Override
+protected void onCreate(Bundle savedInstanceState) {
+
+    setTheme(android.R.style.Theme_Holo);
+
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+}</pre>
+    </div>
+
+    <!-- Legacy Example -->
+    <div class="field-group">
+        <label>Legacy Theme</label>
+        <pre>&lt;application
+    android:theme="@android:style/Theme"&gt;
+&lt;/application&gt;</pre>
     </div>
 
 </body>
