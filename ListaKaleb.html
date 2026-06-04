@@ -193,18 +193,29 @@ protected void onCreate(Bundle savedInstanceState) {
     </div>
 
     <!-- Reproductor MP4 -->
-    <div class="field-group">
-        <label>Video de Demostración</label>
+    <!-- Video de YouTube -->
+<div class="field-group">
+    <label>Video de Demostración</label>
 
-        <div class="info-text">
-            Reproductor HTML5 para archivos MP4.
-        </div>
-
-        <video controls preload="metadata">
-            <source src="AnimationVsSaul.mp4" type="video/mp4">
-            Tu navegador no soporta video HTML5.
-        </video>
+    <div class="info-text">
+        Animation vs Saul
     </div>
+
+    <iframe
+        width="100%"
+        height="315"
+        src="https://www.youtube.com/embed/G6gG2LIFwz0"
+        title="Animation vs Saul"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="
+            width:100%;
+            border-radius:8px;
+            border:1px solid #333333;">
+    </iframe>
+</div>
 
 </body>
 </html>
